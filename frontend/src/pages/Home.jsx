@@ -6,7 +6,7 @@ import Hero from "../components/Hero";
 const Home = () => {
 	return (
 		<>
-			<Hero title={"Welcome to ZeeCare Medical Institute |Your trusted Health Care Provider"} imageUrl={"/hero.png"} />
+			<Hero title={"Welcome to ZeeCare Medical Institute | Your trusted Health Care Provider"} imageUrl={"/hero.png"} />
 			<Biography imageUrl={"/about.png"}/>
 			<Departments />
 			<MessageForm />
@@ -15,5 +15,3 @@ const Home = () => {
 };
 
 export default Home;
-
-//#4:09:45
