@@ -28,10 +28,12 @@ const Login = () => {
 				.then((res) => {
 					toast.success(res.data.message);
 					setIsAuthenticated(true);
+					
 					navigateTo('/');
 					setEmail("");
 					setPassword("");
 					setConfirmPassword("");
+                    {console.log("handle login- login",isAuthenticated)}
 				});
 		} catch (error) {
 			toast.error(error.response.data.message);

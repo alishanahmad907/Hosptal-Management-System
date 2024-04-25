@@ -7,7 +7,13 @@ import { Context } from "../main";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const {isAuthenticated, setIsAuthenticated}  = useContext(Context);
+
+  const navigateTo = useNavigate();
+
+  const goToLogin = () => {
+    navigateTo("/login");
+  };
 
   const handleLogout = async () => {
     await axios
@@ -15,19 +21,16 @@ const Navbar = () => {
         withCredentials: true,
       })
       .then((res) => {
-        toast.success(res.data.message);
         setIsAuthenticated(false);
+        toast.success(res.data.message);
+        {console.log("handle logout - logout",isAuthenticated)}
       })
       .catch((err) => {
         toast.error(err.response.data.message);
       });
   };
 
-  const navigateTo = useNavigate();
-
-  const goToLogin = () => {
-    navigateTo("/login");
-  };
+ 
 
   return (
     <>
@@ -47,13 +50,13 @@ const Navbar = () => {
               About Us
             </Link>
           </div>
-          {isAuthenticated ? (
-            <button className="logoutBtn btn" onClick={handleLogout}>
-              LOGOUT
-            </button>
-          ) : (
+          {!isAuthenticated ? (
             <button className="loginBtn btn" onClick={goToLogin}>
               LOGIN
+            </button> 
+          ) : (
+            <button className="logoutBtn btn" onClick={handleLogout}>
+              LOGOUT
             </button>
           )}
         </div>

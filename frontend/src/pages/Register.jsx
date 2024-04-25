@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Context } from '../main'
 import { Navigate, useNavigate,Link } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -17,8 +19,31 @@ const Register = () => {
 
     const navigateTo = useNavigate();
 
-    const handleRegister = (e) => { 
+    const handleRegister = async(e) => { 
         e.preventDefault();
+        try {
+			await axios
+				.post(
+					"http://localhost:4000/api/v1/user/patient/register",
+					{  firstName,lastName,email,phone,nic,dob,gender,password,role:"Patient"},
+					{
+						withCredentials: true,
+						headers: { "Content-Type": "application/json" },
+					}
+				)
+				.then((res) => {
+					toast.success(res.data.message);
+					setIsAuthenticated(true);
+					
+					navigateTo('/');
+					setEmail("");
+					setPassword("");
+					setConfirmPassword("");
+                    {console.log("handle login- login",isAuthenticated)}
+				});
+		} catch (error) {
+			toast.error(error.response.data.message);
+		}
      }
 
      if (isAuthenticated){
@@ -44,7 +69,7 @@ const Register = () => {
                 <input type="date" placeholder='Date Of Birth' value={dob} onChange={(e)=>{setDob(e.target.value)}}/>
             </div>
             <div>
-                <select value={gender} onChange={(e) => { e.target.value }}>
+                <select value={gender} onChange={(e) => { setGender(e.target.value) }}>
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
