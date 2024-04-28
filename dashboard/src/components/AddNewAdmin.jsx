@@ -36,9 +36,6 @@ const AddNewAdmin = () => {
 					setEmail("");
 					setPassword("");
 					setConfirmPassword("");
-					{
-						console.log("handle login- login", isAuthenticated);
-					}
 				});
 		} catch (error) {
 			toast.error(error.response.data.message);
@@ -49,55 +46,107 @@ const AddNewAdmin = () => {
 		return <Navigate to={"/login"} />;
 	}
 	return (
-    <>
-        <section className="page">
-        <div className='container form-component add-admin-form'>
-        <img src="/logo.png" alt="logo-img" className="logo" />
-        <h1 className="form-title">Add New Admin</h1>
-        <form onSubmit={handleAddNewAdmin}>
+		<>
+			<section className="page">
+				<div className="container form-component add-admin-form">
+					<img src="/logo.png" alt="logo-img" className="logo" />
+					<h1 className="form-title">Add New Admin</h1>
+					<form onSubmit={handleAddNewAdmin}>
+						<div>
+							<input
+								type="text"
+								placeholder="First Name"
+								value={firstName}
+								onChange={(e) => {
+									setFirstName(e.target.value);
+								}}
+							/>
+							<input
+								type="text"
+								placeholder="Last Name"
+								value={lastName}
+								onChange={(e) => {
+									setLastName(e.target.value);
+								}}
+							/>
+						</div>
 
-            <div>
-                <input type="text" placeholder='First Name' value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}/>
-                <input type="text" placeholder='Last Name' value={lastName} onChange={(e)=>{setLastName(e.target.value)}}/>
-            </div>
-
-            <div>
-                <input type="text" placeholder='Email' value={email} onChange={(e)=>{setEmail(e.target.value)}}/>
-                <input type="number" placeholder='Phone Number' value={phone} onChange={(e)=>{setPhone(e.target.value)}}/>
-            </div>
-            <div>
-                <input type="number" placeholder='NIC' value={nic} onChange={(e)=>{setNic(e.target.value)}}/>
-                <input type="date" placeholder='Date Of Birth' value={dob} onChange={(e)=>{setDob(e.target.value)}}/>
-            </div>
-            <div>
-                <select value={gender} onChange={(e) => { setGender(e.target.value) }}>
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-                <input type="password" placeholder='Enter Password' value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-            </div>
-            <div
-						style={{
-							gap: "10px",
-							justifyContent: "flex-end",
-							flexDirection: "row",
-						}}
-					>
-						<p style={{ marginBottom: 0 }}>Alredy Registered?</p>
-						<Link to={"/login"} style={{ textDecoration: "none", color: "#271776ca" }}>
-							Login Now
-						</Link>
-					</div>
-					<div style={{ justifyContent: "center", alignItems: "center" }}>
-						<button type="submit">Register</button>
-					</div>
-        </form>
-    </div>
-
-        </section>
-    </>
-    );
+						<div>
+							<input
+								type="text"
+								placeholder="Email"
+								value={email}
+								onChange={(e) => {
+									setEmail(e.target.value);
+								}}
+							/>
+							<input
+								type="number"
+								placeholder="Phone Number"
+								value={phone}
+								onChange={(e) => {
+									setPhone(e.target.value);
+								}}
+							/>
+						</div>
+						<div>
+							<input
+								type="number"
+								placeholder="NIC"
+								value={nic}
+								onChange={(e) => {
+									setNic(e.target.value);
+								}}
+							/>
+							<input
+								type="date"
+								placeholder="Date Of Birth"
+								value={dob}
+								onChange={(e) => {
+									setDob(e.target.value);
+								}}
+							/>
+						</div>
+						<div>
+							<select
+								value={gender}
+								onChange={(e) => {
+									setGender(e.target.value);
+								}}
+							>
+								<option value="">Select Gender</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>
+							</select>
+							<input
+								type="password"
+								placeholder="Enter Password"
+								value={password}
+								onChange={(e) => {
+									setPassword(e.target.value);
+								}}
+							/>
+						</div>
+						<div
+							style={{
+								gap: "10px",
+								justifyContent: "flex-end",
+								flexDirection: "row",
+							}}
+						>
+							<p style={{ marginBottom: 0 }}>Alredy Registered?</p>
+							<Link to={"/login"} style={{ textDecoration: "none", color: "#271776ca" }}>
+								Login Now
+							</Link>
+						</div>
+						<div style={{ justifyContent: "center", alignItems: "center" }}>
+							<button type="submit">Register</button>
+						</div>
+					</form>
+				</div>
+			</section>
+		</>
+	);
 };
 
 export default AddNewAdmin;
