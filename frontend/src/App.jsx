@@ -10,7 +10,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "./components/Navbar";
 import { Context } from "./main";
-import axios  from "axios";
+import axios from "axios";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
 	const { isAuthenticated, setIsAuthenticated, setUser } = useContext(Context);
@@ -34,6 +36,7 @@ const App = () => {
 	return (
 		<>
 			<Router>
+                <ScrollToTop/>
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -42,7 +45,7 @@ const App = () => {
 					<Route path="/register" element={<Register />} />
 					<Route path="/login" element={<Login />} />
 				</Routes>
-				{/* <Footer /> */}
+				<Footer />
 				<ToastContainer position="top-center" />
 			</Router>
 		</>
