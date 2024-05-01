@@ -41,7 +41,7 @@ const SideBar = () => {
 
 	const handleLogout = async () => {
 		await axios
-			.get("http://localhost:4000/api/v1/user/admin/logout", {
+			.get("https://hms-backend-deployment-y8nl.onrender.com/api/v1/user/admin/logout", {
 				withCredentials: true,
 			})
 			.then((res) => {
